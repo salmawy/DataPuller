@@ -1,4 +1,4 @@
-package com.util.dataPull.core.config.shop2020.entities.repo;
+package com.util.dataPull.core.config.shop2020.repo;
 
 import org.springframework.data.repository.CrudRepository;
 

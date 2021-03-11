@@ -6,7 +6,7 @@ import javax.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.util.dataPull.core.config.shop2020.entities.BaseBean;
-import com.util.dataPull.core.config.shop2020.entities.repo.Contractor2020Repo;
+import com.util.dataPull.core.config.shop2020.repo.Contractor2020Repo;
 import com.util.dataPull.core.mapping.MappingImpl;
 
 import lombok.Getter;
