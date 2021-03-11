@@ -97,6 +97,8 @@ public class CustomerOrder {
 	@Column(name ="VECHILE_TYPE")
 	private String vechileType;
 	
+	@Column(name ="SEASON_ID")
+	private Integer seasonId;
 	
 	/*
 	 * @ManyToOne

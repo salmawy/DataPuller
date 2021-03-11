@@ -48,8 +48,8 @@ public class shopDatasourceConfig
 
         return DataSourceBuilder
                 .create().url("jdbc:oracle:thin:@localhost:1521:xe")
-                .username("SHOP")
-                .password("SHOP")
+                .username("TSHOP")
+                .password("TSHOP")
                 .driverClassName("oracle.jdbc.driver.OracleDriver")
                 .build();
     }
@@ -89,7 +89,7 @@ public class shopDatasourceConfig
                     );
 
             collect.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
-//            collect.put("hibernate.hbm2ddl.auto", "update");
+            collect.put("hibernate.hbm2ddl.auto", "validate");
             return collect;
         } catch (IOException e) {
             return new HashMap<String, Object>();

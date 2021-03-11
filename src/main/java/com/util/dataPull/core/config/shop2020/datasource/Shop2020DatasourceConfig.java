@@ -43,7 +43,10 @@ public class Shop2020DatasourceConfig
 
 
         return DataSourceBuilder
-                .create().url("jdbc:oracle:thin:@localhost:1521:xe").username("SHOP2020").password("SHOP2020").driverClassName("oracle.jdbc.driver.OracleDriver")
+                .create().url("jdbc:oracle:thin:@localhost:1521:xe")
+                .username("DATAPULLSHOP2020")
+                .password("DATAPULLSHOP2020")
+                .driverClassName("oracle.jdbc.driver.OracleDriver")
                 .build();
     }
 
