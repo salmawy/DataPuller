@@ -18,7 +18,10 @@ import java.util.Set;
 @Getter
 public class SellerOrder2020 extends BaseBean implements MappingImpl  {
 
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
+	
     @Column(name = "TOTAL_COST")
     private Double totalCost;
 

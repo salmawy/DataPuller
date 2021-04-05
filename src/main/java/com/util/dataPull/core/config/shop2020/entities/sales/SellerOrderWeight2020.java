@@ -16,7 +16,9 @@ import com.util.dataPull.core.mapping.MappingImpl;
 @Getter
 @Slf4j
 public class SellerOrderWeight2020 extends BaseBean  implements MappingImpl{
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
 
     @Column(name = "GROSS_QUANTITY")
     private Double grossQuantity;

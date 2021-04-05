@@ -6,7 +6,8 @@
 
  import javax.persistence.Column;
  import javax.persistence.Entity;
- import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.util.dataPull.core.config.shop2020.entities.BaseBean;
 
@@ -19,7 +20,9 @@ public class User extends BaseBean  implements java.io.Serializable  {
 	
 
 	private static final long serialVersionUID = 1L;
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
      @Column(name = "NAME")
  	private String username;
 

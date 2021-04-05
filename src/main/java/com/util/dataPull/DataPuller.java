@@ -1,5 +1,6 @@
 package com.util.dataPull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,12 +17,10 @@ import com.util.dataPull.core.config.shop.entities.ContractorAccountDetail;
 import com.util.dataPull.core.config.shop.entities.Customer;
 import com.util.dataPull.core.config.shop.entities.CustomerOrder;
 import com.util.dataPull.core.config.shop.entities.IncLoan;
-import com.util.dataPull.core.config.shop.entities.Income;
 import com.util.dataPull.core.config.shop.entities.IncomeDetail;
 import com.util.dataPull.core.config.shop.entities.Installment;
 import com.util.dataPull.core.config.shop.entities.LoanPaying;
 import com.util.dataPull.core.config.shop.entities.Loaner;
-import com.util.dataPull.core.config.shop.entities.Outcome;
 import com.util.dataPull.core.config.shop.entities.OutcomeDetail;
 import com.util.dataPull.core.config.shop.entities.PurchasedCustomerInst;
 import com.util.dataPull.core.config.shop.entities.Season;
@@ -34,9 +33,7 @@ import com.util.dataPull.core.config.shop2020.entities.contractors.ContractorTra
 import com.util.dataPull.core.config.shop2020.entities.customers.Customer2020;
 import com.util.dataPull.core.config.shop2020.entities.customers.CustomerOrder2020;
 import com.util.dataPull.core.config.shop2020.entities.customers.PurchasedCustomerInst2020;
-import com.util.dataPull.core.config.shop2020.entities.expanses.Income2020;
 import com.util.dataPull.core.config.shop2020.entities.expanses.IncomeDetail2020;
-import com.util.dataPull.core.config.shop2020.entities.expanses.Outcome2020;
 import com.util.dataPull.core.config.shop2020.entities.expanses.OutcomeDetail2020;
 import com.util.dataPull.core.config.shop2020.entities.masterData.Season2020;
 import com.util.dataPull.core.config.shop2020.entities.sales.Installment2020;
@@ -60,11 +57,9 @@ import com.util.dataPull.core.config.shop2020.repo.ILoanDebitRepo;
 import com.util.dataPull.core.config.shop2020.repo.IPayCreditRepo;
 import com.util.dataPull.core.config.shop2020.repo.IPayDebitRepo;
 import com.util.dataPull.core.config.shop2020.repo.IncomeDetailRepo;
-import com.util.dataPull.core.config.shop2020.repo.IncomeRepo;
 import com.util.dataPull.core.config.shop2020.repo.InstallmentRepo;
 import com.util.dataPull.core.config.shop2020.repo.LoanerRepo;
 import com.util.dataPull.core.config.shop2020.repo.OutcomeDetailRepo;
-import com.util.dataPull.core.config.shop2020.repo.OutcomeRepo;
 import com.util.dataPull.core.config.shop2020.repo.PurchasedCustomerInstRepo;
 import com.util.dataPull.core.config.shop2020.repo.SeasonRepo;
 import com.util.dataPull.core.config.shop2020.repo.SellerLoanBagRepo;
@@ -136,15 +131,11 @@ public class DataPuller implements CommandLineRunner {
 
 	 
  
-	@Autowired
-	IncomeRepo incomeRepo;
-
+	 
 	@Autowired
 	IncomeDetailRepo incomeDetailRepo;
 
-	@Autowired
-	OutcomeRepo outcomeRepo;
-
+  
 	@Autowired
 	OutcomeDetailRepo outcomeDetailRepo;
 
@@ -169,7 +160,7 @@ public class DataPuller implements CommandLineRunner {
 		
 		
 		
-// fullPull();
+	//fullPull();
 		partialPull();
 	}
 	
@@ -306,17 +297,7 @@ public class DataPuller implements CommandLineRunner {
 		log.info("PurchasedCustomerInst Data has be en saved succeffully  :)");
 		// ============================================================================================================================================
 
-		log.info("start fetching Income Data ......");
-
-		result = baseService.findAllBeans(Income.class, shopEntityManager);
-		log.info("Income Data has be en fetched succeffully  :)");
-
-		result.stream().forEach(e ->
-
-		incomeRepo.save((Income2020) new Income2020().map(e)));
-		log.info("Income Data has be en saved succeffully  :)");
-		// ============================================================================================================================================
-		log.info("start fetching IncomeDetail Data ......");
+ 		log.info("start fetching IncomeDetail Data ......");
 		result = baseService.findAllBeans(IncomeDetail.class, shopEntityManager);
 		log.info("IncomeDetail Data has be en fetched succeffully  :)");
 
@@ -325,22 +306,11 @@ public class DataPuller implements CommandLineRunner {
 		incomeDetailRepo.save((IncomeDetail2020) new IncomeDetail2020().map(e)));
 		log.info("IncomeDetail Data has be en saved succeffully  :)");
 		// ============================================================================================================================================
-		log.info("start fetching Outcome Data ......");
-		result = baseService.findAllBeans(Outcome.class, shopEntityManager);
-		log.info("Outcome Data has be en fetched succeffully  :)");
-
-		result.stream().forEach(e ->
-
-		outcomeRepo.save((Outcome2020) new Outcome2020().map(e)));
-		log.info("Outcome Data has be en saved succeffully  :)");
-		// ============================================================================================================================================
-
 		log.info("start fetching OutcomeDetail Data ......");
 		result = baseService.findAllBeans(OutcomeDetail.class, shopEntityManager);
 		log.info("OutcomeDetail Data has be en fetched succeffully  :)");
 
 		result.stream().forEach(e ->
-
 		outcomeDetailRepo.save((OutcomeDetail2020) new OutcomeDetail2020().map(e)));
 		log.info("OutcomeDetail Data has be en saved succeffully  :)");
 		// ============================================================================================================================================
@@ -412,18 +382,66 @@ public class DataPuller implements CommandLineRunner {
 	
 	
 	private void partialPull() throws DataBaseException, EmptyResultSetException {  log.info("start fetching ContractorAccountDetail Data ......");
- 			List	  result=	  baseService.findAllBeans(ContractorAccountDetail.class, shopEntityManager);
-			  log.info("ContractorAccountDetail Data has be en fetched succeffully  :)");
-			  result.stream().forEach(e -> {
-			  
-			  try { //log.info("ContractorAccountDetail ID =>>>>>>" +		  ((ContractorAccountDetail) e).getId()); 
-			  if (((ContractorAccountDetail) e).getContractorAccount().getContractorId()!= 101)
-				  contractoTransactionRepo.save((ContractorTransaction) new
-					  ContractorTransaction().map(e)); }
-			  catch (Exception e1) { 
-				 e1.printStackTrace(); }
-			  
-			  
-			  }); log.info("ContractorAccountDetail Data has be en saved succeffully  :)");
-			 }
+ 			List	 result = new ArrayList<>();// baseService.findAllBeans(IncomeDetail.class, shopEntityManager);
+ 			log.info("start fetching IncomeDetail Data ......");
+ 			result = baseService.findAllBeans(IncomeDetail.class, shopEntityManager);
+ 			log.info("IncomeDetail Data has be en fetched succeffully  :)");
+
+ 			result.stream().forEach(e ->
+
+ 			incomeDetailRepo.save((IncomeDetail2020) new IncomeDetail2020().map(e)));
+ 			log.info("IncomeDetail Data has be en saved succeffully  :)");
+ 			// ============================================================================================================================================
+ 			log.info("start fetching OutcomeDetail Data ......");
+ 			result = baseService.findAllBeans(OutcomeDetail.class, shopEntityManager);
+ 			log.info("OutcomeDetail Data has be en fetched succeffully  :)");
+
+ 			result.stream().forEach(e ->
+ 			outcomeDetailRepo.save((OutcomeDetail2020) new OutcomeDetail2020().map(e)));
+ 			log.info("OutcomeDetail Data has be en saved succeffully  :)");
+ 			//===============================================================================================================================================
+			 
+	
+ 			log.info("start fetching LoanPaying Data ......");
+ 			result = baseService.findAllBeans(LoanPaying.class, shopEntityManager);
+ 			log.info("LoanPaying Data has be en fetched succeffully  :)");
+
+ 			result.stream().forEach(e ->
+ 			{
+ 				  LoanPaying loanPaying=(LoanPaying)e;
+ 			  if(loanPaying.getLoanAccount().getType().equals("IN_LOAN")) {
+ 				  ShopLoanTransaction loanTransaction=new PayCredit().mapLoanPaying(loanPaying);
+ 				  payCreditRepo.save((PayCredit)loanTransaction);
+ 			  }
+ 			  else if (loanPaying.getLoanAccount().getType().equals("OUT_LOAN")) {
+ 				  ShopLoanTransaction loanTransaction=new PayDebit().mapLoanPaying(loanPaying);
+ 				  payDebitRepo.save((PayDebit)loanTransaction);
+ 			  }  
+ 			  
+ 			  
+ 			  }
+ 			);
+ 			log.info("LoanPaying Data has be en saved succeffully  :)");
+ 			// ============================================================================================================================================
+ 			log.info("start fetching IncLoan Data ......");
+ 			result = baseService.findAllBeans(IncLoan.class, shopEntityManager);
+ 			log.info("IncLoan Data has be en fetched succeffully  :)");
+
+ 			result.stream().forEach(e ->
+ 			{
+ 				  IncLoan incloan=(IncLoan)e;
+ 		 		  if(incloan.getLoanAccount().getType().equals("IN_LOAN")) {
+ 					  ShopLoanTransaction loanTransaction=new LoanDebit().mapIncLoan(incloan);
+ 		 			  loanDebitRepo.save((LoanDebit)loanTransaction);
+ 				  }
+ 				  else if (incloan.getLoanAccount().getType().equals("OUT_LOAN")) {
+ 		 			  ShopLoanTransaction loanTransaction=new LoanCredit().mapIncLoan(incloan);
+ 					  loanCreditRepo.save((LoanCredit)loanTransaction);
+ 		 		  }  
+ 				  
+ 				  
+ 				  });
+ 			log.info("IncLoan Data has be en saved succeffully  :)");
+	
+	}
 }

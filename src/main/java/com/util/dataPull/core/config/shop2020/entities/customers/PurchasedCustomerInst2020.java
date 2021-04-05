@@ -18,7 +18,10 @@ import java.util.Date;
 @Getter
 public class PurchasedCustomerInst2020 extends BaseBean implements MappingImpl {
 
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
+	
     @Column(name = "INSTALLMENT_DATE")
     private Date instalmentDate;
 

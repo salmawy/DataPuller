@@ -1,67 +1,60 @@
 package com.util.dataPull.core.config.shop2020.entities.expanses;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.util.dataPull.core.Enum.OutcomeTypeEnum;
 import com.util.dataPull.core.config.shop.entities.OutcomeDetail;
-import com.util.dataPull.core.config.shop2020.entities.BaseBean;
 import com.util.dataPull.core.mapping.MappingImpl;
 
 @Table(name = "OUTCOME_DETAILS")
 @Entity(name = "OutcomeDetail")
-@Setter
-@Getter
-public class OutcomeDetail2020 extends BaseBean  implements MappingImpl  {
+@DiscriminatorValue("OUTCOME")
+public class OutcomeDetail2020 extends SafeTransaction  implements MappingImpl  {
 
 
-    @Column(name = "TYPE_NAME")
-    private String typeName;
+  public Integer getCustomerId() {
+	  return this.getPersonId();
+  }
+   
+  public Integer getCustomerOrderId() {
+	  return this.getOrderId();
+  }
 
-    @Column(name = "AMOUNT")
-    private Double amount;
-
-    @Column(name = "SPENDER_NAME")
-    private String spenderName;
-
-    @Column(name = "NOTES")
-    private String notes;
-
-    @Column(name = "CUSTOMER_ID")
-    private Integer customerId;
-
-    @Column(name = "ORDER_ID")
-    private Integer orderId;
-
- 
-    @Column(name = "FRIDAGE_ID")
-    private int fridageId;
-
- 
-    @Column(name = "OUTCOME_ID")
-    private int outcomeId;
-
-     
-    @Column(name = "TYPE_ID")
-    private int typeId;
+  
+  public void setCustomerId(Integer id ) {
+	   this.setPersonId(id);
+  }
+   
+  public void setCustomerOrderId(Integer id ) {
+	   this.setOrderId(id);
+  }
 
 
 	@Override
 	public Object map(Object o) {
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-mm-yyyy");
 		OutcomeDetail e=(OutcomeDetail)o;
 		this.setId(e.getId());
+		this.setSeasonId(e.getOutcome().getSeason().getId());
 		this.setAmount(e.getAmount().doubleValue());
 		this.setCustomerId(e.getCustomerId());
 		this.setFridageId(e.getFridage().getId());
 		this.setNotes(e.getNotes());
 		this.setTypeId(getIntValueOFType(e.getTypeName()));
-		this.setOutcomeId(e.getOutcome().getId());
-		this.setOrderId(e.getOrderId());
-		this.setSpenderName(e.getSpenderName());
-	
-		
+ 		this.setCustomerOrderId(e.getOrderId());
+		this.setCreatorName(e.getSpenderName());
+		this.setTransactionDate(e.getOutcome().getOutcomeDate());
+		try {
+			this.setTransactionDay(sdf.parse(sdf.format(e.getOutcome().getOutcomeDate())));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		
 		return this;

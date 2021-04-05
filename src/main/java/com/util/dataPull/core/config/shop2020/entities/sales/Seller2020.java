@@ -6,7 +6,8 @@
 
  import javax.persistence.Column;
  import javax.persistence.Entity;
- import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.util.dataPull.core.Enum.SellerTypeEnum;
 import com.util.dataPull.core.config.shop.entities.Seller;
@@ -19,6 +20,11 @@ import com.util.dataPull.core.mapping.MappingImpl;
  @Getter
 public class Seller2020 extends BaseBean implements MappingImpl{
 
+	 
+		@Id
+		@Column(name ="ID" )
+		private int id ;
+		
 	 @Column(name = "NAME")
 	private String name;
 

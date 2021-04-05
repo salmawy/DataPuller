@@ -22,7 +22,10 @@ import java.util.Date;
 @Slf4j
 public class CustomerOrder2020 extends BaseBean implements MappingImpl {
 
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
+	
 	@Column(name = "NOLUN")
 	private Double nolun;
 

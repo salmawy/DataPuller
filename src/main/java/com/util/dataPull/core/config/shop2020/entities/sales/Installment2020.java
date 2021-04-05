@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.util.dataPull.core.config.shop.entities.Installment;
@@ -19,7 +20,9 @@ import java.util.Date;
 @Getter
 public class Installment2020 extends BaseBean implements MappingImpl {
 
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
     @Column(name = "INSTALLMENT_DATE")
     private Date instalmentDate;
 

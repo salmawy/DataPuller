@@ -1,12 +1,12 @@
 package com.util.dataPull.core.config.shop2020.entities.contractors;
 
 
-import javax.persistence.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.util.dataPull.core.config.shop2020.entities.BaseBean;
-import com.util.dataPull.core.config.shop2020.repo.Contractor2020Repo;
 import com.util.dataPull.core.mapping.MappingImpl;
 
 import lombok.Getter;
@@ -18,7 +18,10 @@ import lombok.Setter;
 @Getter
 public class Contractor2020  extends BaseBean implements MappingImpl{
 	
- 
+	@Id
+	@Column(name ="ID" )
+	private int id ;
+	
 	@Column(name ="NAME" )
 	private String name;
 

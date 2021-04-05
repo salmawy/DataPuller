@@ -18,7 +18,9 @@ import java.util.Date;
 @Getter
 public class ContractorTransaction extends BaseBean implements MappingImpl{
 
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
 
 	@Column(name = "TRANSACTION_DATE")
 	private Date transactionDate;

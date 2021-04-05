@@ -14,7 +14,9 @@ import com.util.dataPull.core.mapping.MappingImpl;
 @Setter
 @Getter
 public class SellerLoanBag2020 extends BaseBean implements MappingImpl {
-
+	@Id
+	@Column(name ="ID" )
+	private int id ;
 
     @Column(name = "PRIOR_LOAN")
     private double priorLoan;

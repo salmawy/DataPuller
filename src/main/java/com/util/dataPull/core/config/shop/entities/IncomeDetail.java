@@ -33,6 +33,12 @@ public class IncomeDetail  {
 	@Column(name = "SELLER_ID")
     private Integer sellerId;
 
+	
+	
+	 @ManyToOne
+	    @JoinColumn(name = "FRIDAGE_ID")
+	    private Fridage fridage;
+
 	/*
 	 * @Column(name = "SELLER_ORDER_ID") private Integer sellerOrderId;
 	 */

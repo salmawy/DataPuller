@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.util.dataPull.core.config.shop.entities.Season;
@@ -19,6 +20,14 @@ import java.util.Date;
  @Getter
  public class Season2020 extends BaseBean implements MappingImpl{
 
+	 
+	 
+	 
+		@Id
+		@Column(name ="ID" )
+		private int id ;
+		
+		
      @Column(name = "START_DATE")
      private Date startDate;
 

@@ -15,9 +15,7 @@ import java.util.Date;
 @Getter
 public class BaseBean {
  
-	@Id
-	@Column(name ="ID" )
-	private int id ;
+
 
 	@Column(name = "CHANGER_ID")
 	private Integer changerId;

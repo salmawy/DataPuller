@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.util.dataPull.core.config.shop2020.entities.BaseBean;
@@ -15,6 +16,12 @@ import com.util.dataPull.core.config.shop2020.entities.BaseBean;
 @Setter
 @Getter
 public class OutcomeType2020 extends BaseBean {
+	
+	
+	@Id
+	@Column(name ="ID" )
+	private int id ;
+	
 	@Column(name = "NAME")
 	private String name;
 

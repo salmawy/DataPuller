@@ -29,7 +29,7 @@ import java.util.Date;
 
      @ManyToOne
      @JoinColumn(name = "SEASON_ID")
-     private Season seasonId;
+     private Season season;
 
 	/*
 	 * @ManyToOne
