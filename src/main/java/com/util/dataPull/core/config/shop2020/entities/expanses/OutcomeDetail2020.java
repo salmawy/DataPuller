@@ -37,7 +37,7 @@ public class OutcomeDetail2020 extends SafeTransaction  implements MappingImpl  
 
 	@Override
 	public Object map(Object o) {
-		SimpleDateFormat sdf=new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 		OutcomeDetail e=(OutcomeDetail)o;
 		this.setId(e.getId());
 		this.setSeasonId(e.getOutcome().getSeason().getId());

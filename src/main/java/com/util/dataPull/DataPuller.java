@@ -30,6 +30,7 @@ import com.util.dataPull.core.config.shop.entities.SellerOrder;
 import com.util.dataPull.core.config.shop.entities.SellerOrderWeight;
 import com.util.dataPull.core.config.shop2020.entities.contractors.Contractor2020;
 import com.util.dataPull.core.config.shop2020.entities.contractors.ContractorTransaction;
+import com.util.dataPull.core.config.shop2020.entities.contractors.ContractorType;
 import com.util.dataPull.core.config.shop2020.entities.customers.Customer2020;
 import com.util.dataPull.core.config.shop2020.entities.customers.CustomerOrder2020;
 import com.util.dataPull.core.config.shop2020.entities.customers.PurchasedCustomerInst2020;
@@ -52,6 +53,7 @@ import com.util.dataPull.core.config.shop2020.repo.ContractorTransactionRepo;
 import com.util.dataPull.core.config.shop2020.repo.CustomerOrderRepo;
 import com.util.dataPull.core.config.shop2020.repo.CustomerRepo;
 import com.util.dataPull.core.config.shop2020.repo.FridageRepo;
+import com.util.dataPull.core.config.shop2020.repo.IContractorTypeRepo;
 import com.util.dataPull.core.config.shop2020.repo.ILoanCreditRepo;
 import com.util.dataPull.core.config.shop2020.repo.ILoanDebitRepo;
 import com.util.dataPull.core.config.shop2020.repo.IPayCreditRepo;
@@ -99,7 +101,10 @@ public class DataPuller implements CommandLineRunner {
 
 	@Autowired
 	Contractor2020Repo contractorRepo;
+	@Autowired
+	IContractorTypeRepo contractorTypeRepo;
 
+	
 	
 
 	@Autowired
@@ -160,8 +165,8 @@ public class DataPuller implements CommandLineRunner {
 		
 		
 		
-	//fullPull();
-		partialPull();
+	fullPull();
+		//partialPull();
 	}
 	
 	
@@ -192,7 +197,16 @@ public class DataPuller implements CommandLineRunner {
 		  shopContractors.stream().forEach(e -> contractorRepo.save((Contractor2020)
 		  new Contractor2020().map(e)));
 		  log.info("Contractor Data has be en saved succeffully  :)"); 
-		  
+		  //============================================================================= ===============================================================
+
+		  ContractorType labour=new ContractorType(1,"Labour");
+		  ContractorType supplier=new ContractorType(2,"supplier");
+		  ContractorType varaiaty=new ContractorType(3,"varaiaty");
+
+		  contractorTypeRepo.save(labour);
+		  contractorTypeRepo.save(supplier);
+		  contractorTypeRepo.save(varaiaty);
+
 		  //============================================================================= ===============================================================
 		  log.info("start fetching ContractorAccountDetail Data ......"); result =
 		  baseService.findAllBeans(ContractorAccountDetail.class, shopEntityManager);

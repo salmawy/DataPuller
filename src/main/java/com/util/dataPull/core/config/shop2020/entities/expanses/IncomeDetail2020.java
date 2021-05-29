@@ -43,7 +43,7 @@ public class IncomeDetail2020 extends SafeTransaction implements MappingImpl {
 	@Override
 	public Object map(Object o) {
 		IncomeDetail e = (IncomeDetail) o;
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 		this.setId(e.getId());
 		this.setSeasonId(e.getIncome().getSeason().getId());
