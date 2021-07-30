@@ -36,7 +36,9 @@ public class ContractorTransaction extends BaseBean implements MappingImpl{
 
 	@Column(name = "PAID")
 	private int paid;
-
+	
+	@Column(name = "SETTLEDMENT_DATE")
+	private Date settllmentDate;
  
 	@Column(name = "SEASON_ID")
 	private int seasonId;

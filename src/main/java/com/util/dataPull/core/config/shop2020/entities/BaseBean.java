@@ -1,14 +1,13 @@
 package com.util.dataPull.core.config.shop2020.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import java.sql.Timestamp;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+import lombok.Getter;
+import lombok.Setter;
 @MappedSuperclass
 
 @Setter

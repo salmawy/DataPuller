@@ -199,13 +199,7 @@ public class DataPuller implements CommandLineRunner {
 		  log.info("Contractor Data has be en saved succeffully  :)"); 
 		  //============================================================================= ===============================================================
 
-		  ContractorType labour=new ContractorType(1,"Labour");
-		  ContractorType supplier=new ContractorType(2,"supplier");
-		  ContractorType varaiaty=new ContractorType(3,"varaiaty");
-
-		  contractorTypeRepo.save(labour);
-		  contractorTypeRepo.save(supplier);
-		  contractorTypeRepo.save(varaiaty);
+		
 
 		  //============================================================================= ===============================================================
 		  log.info("start fetching ContractorAccountDetail Data ......"); result =

@@ -65,7 +65,7 @@ public class SellerOrder2020 extends BaseBean implements MappingImpl  {
 		this.setSeasonId(e.getSeason().getId());
 		this.setTotalCost(e.getTotalCost().doubleValue());
 		this.setSellerId(e.getSeller().getId());
-		this.setSellerLoanBagId(e.getSellerLoanBagId());
+		this.setSellerLoanBagId((e.getSellerLoanBagId()==0)?null:e.getSellerLoanBagId());
 		
 		return this;
 	}

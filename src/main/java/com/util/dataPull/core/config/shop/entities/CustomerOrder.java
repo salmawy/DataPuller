@@ -100,14 +100,9 @@ public class CustomerOrder {
 	@Column(name ="SEASON_ID")
 	private Integer seasonId;
 	
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name ="VECHILE_TYPE_ID") private VehicleType vehicleType;
-	 * 
-	
-	@Column(name ="INVOICE_STATUS")
-	private int invoiceStatus;
- */
+	@Column(name ="STORE_ID")
+	private int storeId;
+
+
 
 }

@@ -1,19 +1,20 @@
 package com.util.dataPull.core.config.shop2020.entities.customers;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
- import com.util.dataPull.core.Enum.CustomerTypeEnum;
 import com.util.dataPull.core.Enum.VechileTypeEnum;
-import com.util.dataPull.core.config.shop.entities.Customer;
 import com.util.dataPull.core.config.shop.entities.CustomerOrder;
 import com.util.dataPull.core.config.shop2020.entities.BaseBean;
 import com.util.dataPull.core.mapping.MappingImpl;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Table(name ="CUSTOMER_ORDERS")
 @Entity(name ="CustomerOrder")
@@ -105,6 +106,14 @@ public class CustomerOrder2020 extends BaseBean implements MappingImpl {
 	private int vehicleType;
 	
 	
+	
+	@Column(name ="STORE_ID")
+	private int storeId;
+
+
+	
+	
+	
 	@Column(name ="INVOICE_STATUS")
 	private Integer invoiceStatus;
 	@Override
@@ -137,7 +146,8 @@ public class CustomerOrder2020 extends BaseBean implements MappingImpl {
 		this.setSeasonId(e.getSeasonId());
 		this.setUnitePrice(e.getUnitePrice().doubleValue());
 		this.setUnits(e.getUnits());
-		
+		this.setStoreId(e.getStoreId());
+
 //========================================================================================
 /*		update CUSTOMER_ORDER set INVOICE_STATUS=1
 				 where CUSTOMER_ORDER.FINISHED=1 and dued=0;
