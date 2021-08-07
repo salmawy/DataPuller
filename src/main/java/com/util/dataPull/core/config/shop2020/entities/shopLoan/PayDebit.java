@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.util.dataPull.core.config.shop2020.*;
 import com.util.dataPull.core.config.shop2020.entities.expanses.OutcomeDetail2020;
 
 import lombok.Getter;

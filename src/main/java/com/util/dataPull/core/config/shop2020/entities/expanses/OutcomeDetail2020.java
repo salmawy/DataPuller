@@ -3,6 +3,7 @@ package com.util.dataPull.core.config.shop2020.entities.expanses;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,12 +12,17 @@ import com.util.dataPull.core.Enum.OutcomeTypeEnum;
 import com.util.dataPull.core.config.shop.entities.OutcomeDetail;
 import com.util.dataPull.core.mapping.MappingImpl;
 
+import lombok.Setter;
+
 @Table(name = "OUTCOME_DETAILS")
 @Entity(name = "OutcomeDetail")
 @DiscriminatorValue("OUTCOME")
+@Setter
 public class OutcomeDetail2020 extends SafeTransaction  implements MappingImpl  {
 
-
+	@Column(name = "OUTCOME_TYPE_ID")
+	private Integer outcomeTypeId;
+ 
   public Integer getCustomerId() {
 	  return this.getPersonId();
   }
@@ -45,7 +51,7 @@ public class OutcomeDetail2020 extends SafeTransaction  implements MappingImpl  
 		this.setCustomerId(e.getCustomerId());
 		this.setFridageId(e.getFridage().getId());
 		this.setNotes(e.getNotes());
-		this.setTypeId(getIntValueOFType(e.getTypeName()));
+		this.setOutcomeTypeId(getIntValueOFType(e.getTypeName()));
  		this.setCustomerOrderId(e.getOrderId());
 		this.setCreatorName(e.getSpenderName());
 		this.setTransactionDate(e.getOutcome().getOutcomeDate());
@@ -62,8 +68,8 @@ public class OutcomeDetail2020 extends SafeTransaction  implements MappingImpl  
 
 	
 	
-	private int getIntValueOFType(String typeName) {
-		int type=0;
+	private Integer getIntValueOFType(String typeName) {
+		Integer type=null;
 		/**
 		 * 
 		 * 

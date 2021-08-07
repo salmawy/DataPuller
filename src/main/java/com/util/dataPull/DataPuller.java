@@ -104,9 +104,6 @@ public class DataPuller implements CommandLineRunner {
 	@Autowired
 	IContractorTypeRepo contractorTypeRepo;
 
-	
-	
-
 	@Autowired
 	ContractorTransactionRepo contractoTransactionRepo;
 
@@ -134,22 +131,15 @@ public class DataPuller implements CommandLineRunner {
 	@Autowired
 	PurchasedCustomerInstRepo purchasedCustomerInstRepo;
 
-	 
- 
-	 
 	@Autowired
 	IncomeDetailRepo incomeDetailRepo;
 
-  
 	@Autowired
 	OutcomeDetailRepo outcomeDetailRepo;
 
 	@Autowired
 	InstallmentRepo installmentRepo;
 
-	 
-	
-	
 	@Autowired
 	ILoanCreditRepo loanCreditRepo;
 	@Autowired
@@ -161,120 +151,112 @@ public class DataPuller implements CommandLineRunner {
 
 	@Override
 	@Transactional
-	public void run(String... args) throws Exception { 
-		
-		
-		
-	fullPull();
-		//partialPull();
-	}
-	
-	
-	
-	
-	private void fullPull() throws DataBaseException, EmptyResultSetException {
+	public void run(String... args) throws Exception {
 
+		//fullPull();
+		 partialPull();
+	}
+
+	private void fullPull() throws DataBaseException, EmptyResultSetException {
 
 		// shopEntityManager.
 		List<Object> result = null;
 
 		// ============================================================================================================================================
-		
-		  log.info("start fetching Season Data ......"); result =
-		  baseService.findAllBeans(Season.class, shopEntityManager);
-		  log.info("Season Data has be en fetched succeffully  :)");
-		  result.stream().forEach(e ->
-		  
-		  seasonRepo.save((Season2020) new Season2020().map(e)));
-		  
-		  log.info("Season Data has be en saved succeffully  :)");
-		  
-		  //============================================================================================================================================
-		  log.info("start fetching Contractor Data ......"); List<Contractor>
-		  shopContractors = baseService.findAllBeans(Contractor.class,
-		  shopEntityManager);
-		  log.info("Contractor Data has be en fetched succeffully  :)");
-		  shopContractors.stream().forEach(e -> contractorRepo.save((Contractor2020)
-		  new Contractor2020().map(e)));
-		  log.info("Contractor Data has be en saved succeffully  :)"); 
-		  //============================================================================= ===============================================================
 
-		
+		log.info("start fetching Season Data ......");
+		result = baseService.findAllBeans(Season.class, shopEntityManager);
+		log.info("Season Data has be en fetched succeffully  :)");
+		result.stream().forEach(e ->
 
-		  //============================================================================= ===============================================================
-		  log.info("start fetching ContractorAccountDetail Data ......"); result =
-		  baseService.findAllBeans(ContractorAccountDetail.class, shopEntityManager);
-		  log.info("ContractorAccountDetail Data has be en fetched succeffully  :)");
-		  result.stream().forEach(e -> {
-		  
-		  try { //log.info("ContractorAccountDetail ID =>>>>>>" +		  ((ContractorAccountDetail) e).getId()); 
-		  if (((ContractorAccountDetail) e).getContractorAccount().getContractorId()!= 101)
-			  contractoTransactionRepo.save((ContractorTransaction) new
-				  ContractorTransaction().map(e)); }
-		  catch (Exception e1) { 
-			 e1.printStackTrace(); }
-		  
-		  
-		  }); log.info("ContractorAccountDetail Data has be en saved succeffully  :)");
-		 
-		  // ============================================================================================================================================
-		  log.info("start fetching Customer Data ......"); result =
-	 result=  baseService.findAllBeans(Customer.class, shopEntityManager);
-		  log.info("Customer Data has be en fetched succeffully  :)");
-		  result.stream().forEach(e ->
-		  
-		  customerRepo.save((Customer2020) new Customer2020().map(e)));
-		  log.info("Customer Data has be en saved succeffully  :)");
-		  // ============================================================================================================================================
-		  log.info("start fetching Seller Data ......"); result =
-		  baseService.findAllBeans(Seller.class, shopEntityManager);
-		  log.info("Seller Data has be en fetched succeffully  :)");
-		  
-		  result.stream().forEach(e ->
-		  
-		  sellerRepo.save((Seller2020) new Seller2020().map(e)));
-		  log.info("Seller Data has be en saved succeffully  :)"); 
-		  // ============================================================================================================================================
-		  log.info("start fetching Loaner Data ......"); result =
-		  baseService.findAllBeans(Loaner.class, shopEntityManager);
-		  log.info("Loaner Data has be en fetched succeffully  :)");
-		  
-		  result.stream().forEach(e ->
-		  
-		  loanerRepo.save((Loaner2020) new Loaner2020().map(e)));
-		  log.info("Loaner Data has be en saved succeffully  :)");
-		 
+		seasonRepo.save((Season2020) new Season2020().map(e)));
+
+		log.info("Season Data has be en saved succeffully  :)");
+
 		// ============================================================================================================================================
-		
-		  log.info("start fetching CustomerOrder Data ......");
-		  result =
-		  baseService.findAllBeans(CustomerOrder.class, shopEntityManager);
-		  log.info("CustomerOrder Data has be en fetched succeffully  :)");
-		  
-		  result.stream().forEach(e ->
-		  
-		  customerOrderRepo.save((CustomerOrder2020) new CustomerOrder2020().map(e)));
-		  log.info("CustomerOrder Data has be en saved CustomerOrder  :)"); //
+		log.info("start fetching Contractor Data ......");
+		List<Contractor> shopContractors = baseService.findAllBeans(Contractor.class, shopEntityManager);
+		log.info("Contractor Data has be en fetched succeffully  :)");
+		shopContractors.stream().forEach(e -> contractorRepo.save((Contractor2020) new Contractor2020().map(e)));
+		log.info("Contractor Data has be en saved succeffully  :)");
+		// =============================================================================
+		// ===============================================================
+
+		// =============================================================================
+		// ===============================================================
+		log.info("start fetching ContractorAccountDetail Data ......");
+		result = baseService.findAllBeans(ContractorAccountDetail.class, shopEntityManager);
+		log.info("ContractorAccountDetail Data has be en fetched succeffully  :)");
+		result.stream().forEach(e -> {
+
+			try { // log.info("ContractorAccountDetail ID =>>>>>>" + ((ContractorAccountDetail)
+					// e).getId());
+				if (((ContractorAccountDetail) e).getContractorAccount().getContractorId() != 101)
+					contractoTransactionRepo.save((ContractorTransaction) new ContractorTransaction().map(e));
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+		});
+		log.info("ContractorAccountDetail Data has be en saved succeffully  :)");
+
 		// ============================================================================================================================================
-		  log.info("start fetching SellerLoanBag Data ......");
-		  
-		  result = baseService.findAllBeans(SellerLoanBag.class, shopEntityManager);
-		  log.info("SellerLoanBag Data has be en fetched succeffully  :)");
-		  
-		  result.stream().forEach(e ->
-		 
-		  bagRepo.save((SellerLoanBag2020) new SellerLoanBag2020().map(e)));
-		  log.info("SellerLoanBag Data has be en saved succeffully  :)"); //
-		 // ============================================================================================================================================
-		  log.info("start fetching SellerOrder Data ......"); result =
-		  baseService.findAllBeans(SellerOrder.class, shopEntityManager);
-		  log.info("SellerOrder Data has be en fetched succeffully  :)");
-		  
-		  result.stream().forEach(e ->
-		  
-		  sellerOrderRepo.save((SellerOrder2020) new SellerOrder2020().map(e)));
-		  log.info("SellerOrder Data has be en saved succeffully  :)");
-		 
+		log.info("start fetching Customer Data ......");
+		result = result = baseService.findAllBeans(Customer.class, shopEntityManager);
+		log.info("Customer Data has be en fetched succeffully  :)");
+		result.stream().forEach(e ->
+
+		customerRepo.save((Customer2020) new Customer2020().map(e)));
+		log.info("Customer Data has be en saved succeffully  :)");
+		// ============================================================================================================================================
+		log.info("start fetching Seller Data ......");
+		result = baseService.findAllBeans(Seller.class, shopEntityManager);
+		log.info("Seller Data has be en fetched succeffully  :)");
+
+		result.stream().forEach(e ->
+
+		sellerRepo.save((Seller2020) new Seller2020().map(e)));
+		log.info("Seller Data has be en saved succeffully  :)");
+		// ============================================================================================================================================
+		log.info("start fetching Loaner Data ......");
+		result = baseService.findAllBeans(Loaner.class, shopEntityManager);
+		log.info("Loaner Data has be en fetched succeffully  :)");
+
+		result.stream().forEach(e ->
+
+		loanerRepo.save((Loaner2020) new Loaner2020().map(e)));
+		log.info("Loaner Data has be en saved succeffully  :)");
+
+		// ============================================================================================================================================
+
+		log.info("start fetching CustomerOrder Data ......");
+		result = baseService.findAllBeans(CustomerOrder.class, shopEntityManager);
+		log.info("CustomerOrder Data has be en fetched succeffully  :)");
+
+		result.stream().forEach(e ->
+
+		customerOrderRepo.save((CustomerOrder2020) new CustomerOrder2020().map(e)));
+		log.info("CustomerOrder Data has be en saved CustomerOrder  :)"); //
+		// ============================================================================================================================================
+		log.info("start fetching SellerLoanBag Data ......");
+
+		result = baseService.findAllBeans(SellerLoanBag.class, shopEntityManager);
+		log.info("SellerLoanBag Data has be en fetched succeffully  :)");
+
+		result.stream().forEach(e ->
+
+		bagRepo.save((SellerLoanBag2020) new SellerLoanBag2020().map(e)));
+		log.info("SellerLoanBag Data has be en saved succeffully  :)"); //
+		// ============================================================================================================================================
+		log.info("start fetching SellerOrder Data ......");
+		result = baseService.findAllBeans(SellerOrder.class, shopEntityManager);
+		log.info("SellerOrder Data has be en fetched succeffully  :)");
+
+		result.stream().forEach(e ->
+
+		sellerOrderRepo.save((SellerOrder2020) new SellerOrder2020().map(e)));
+		log.info("SellerOrder Data has be en saved succeffully  :)");
+
 		// ============================================================================================================================================
 		log.info("start fetching SellerOrderWeight Data ......");
 		result = baseService.findAllBeans(SellerOrderWeight.class, shopEntityManager);
@@ -305,7 +287,7 @@ public class DataPuller implements CommandLineRunner {
 		log.info("PurchasedCustomerInst Data has be en saved succeffully  :)");
 		// ============================================================================================================================================
 
- 		log.info("start fetching IncomeDetail Data ......");
+		log.info("start fetching IncomeDetail Data ......");
 		result = baseService.findAllBeans(IncomeDetail.class, shopEntityManager);
 		log.info("IncomeDetail Data has be en fetched succeffully  :)");
 
@@ -318,8 +300,7 @@ public class DataPuller implements CommandLineRunner {
 		result = baseService.findAllBeans(OutcomeDetail.class, shopEntityManager);
 		log.info("OutcomeDetail Data has be en fetched succeffully  :)");
 
-		result.stream().forEach(e ->
-		outcomeDetailRepo.save((OutcomeDetail2020) new OutcomeDetail2020().map(e)));
+		result.stream().forEach(e -> outcomeDetailRepo.save((OutcomeDetail2020) new OutcomeDetail2020().map(e)));
 		log.info("OutcomeDetail Data has be en saved succeffully  :)");
 		// ============================================================================================================================================
 
@@ -328,128 +309,109 @@ public class DataPuller implements CommandLineRunner {
 		result = baseService.findAllBeans(LoanPaying.class, shopEntityManager);
 		log.info("LoanPaying Data has be en fetched succeffully  :)");
 
-		result.stream().forEach(e ->
-		{
-			  LoanPaying loanPaying=(LoanPaying)e;
-		  if(loanPaying.getLoanAccount().getType().equals("IN_LOAN")) {
-			  ShopLoanTransaction loanTransaction=new PayCredit().mapLoanPaying(loanPaying);
-			  payCreditRepo.save((PayCredit)loanTransaction);
-		  }
-		  else if (loanPaying.getLoanAccount().getType().equals("OUT_LOAN")) {
-			  ShopLoanTransaction loanTransaction=new PayDebit().mapLoanPaying(loanPaying);
-			  payDebitRepo.save((PayDebit)loanTransaction);
-		  }  
-		  
-		  
-		  }
-		);
+		result.stream().forEach(e -> {
+			LoanPaying loanPaying = (LoanPaying) e;
+			if (loanPaying.getLoanAccount().getType().equals("IN_LOAN")) {
+				ShopLoanTransaction loanTransaction = new PayDebit().mapLoanPaying(loanPaying);
+				payCreditRepo.save((PayCredit) loanTransaction);
+			} else if (loanPaying.getLoanAccount().getType().equals("OUT_LOAN")) {
+				ShopLoanTransaction loanTransaction = new PayCredit().mapLoanPaying(loanPaying);
+				payDebitRepo.save((PayDebit) loanTransaction);
+			}
+
+		});
 		log.info("LoanPaying Data has be en saved succeffully  :)");
 		// ============================================================================================================================================
 		log.info("start fetching IncLoan Data ......");
 		result = baseService.findAllBeans(IncLoan.class, shopEntityManager);
 		log.info("IncLoan Data has be en fetched succeffully  :)");
 
-		result.stream().forEach(e ->
-		{
-			  IncLoan incloan=(IncLoan)e;
-	 		  if(incloan.getLoanAccount().getType().equals("IN_LOAN")) {
-				  ShopLoanTransaction loanTransaction=new LoanDebit().mapIncLoan(incloan);
-	 			  loanDebitRepo.save((LoanDebit)loanTransaction);
-			  }
-			  else if (incloan.getLoanAccount().getType().equals("OUT_LOAN")) {
-	 			  ShopLoanTransaction loanTransaction=new LoanCredit().mapIncLoan(incloan);
-				  loanCreditRepo.save((LoanCredit)loanTransaction);
-	 		  }  
-			  
-			  
-			  });
+		result.stream().forEach(e -> {
+			IncLoan incloan = (IncLoan) e;
+			if (incloan.getLoanAccount().getType().equals("IN_LOAN")) {
+				ShopLoanTransaction loanTransaction = new LoanDebit().mapIncLoan(incloan);
+				loanDebitRepo.save((LoanDebit) loanTransaction);
+			} else if (incloan.getLoanAccount().getType().equals("OUT_LOAN")) {
+				ShopLoanTransaction loanTransaction = new LoanCredit().mapIncLoan(incloan);
+				loanCreditRepo.save((LoanCredit) loanTransaction);
+			}
+
+		});
 		log.info("IncLoan Data has be en saved succeffully  :)");
 		// ============================================================================================================================================
-		log.info("====================================================================================================================================");
-		log.info("====================================================================================================================================");
-		log.info("====================================================================================================================================");
-		log.info("================================   ==========================================   =============      ==============================");
-		log.info("================================   ==========================================   ===========    =   ================================");
-		log.info("================================   ==========================================   ===========   ==   =================================");
-		log.info("================================   ==========================================   ==========   ===   ==================================");
-		log.info("================================   ==========================================   =========   ====   ==============================");
-		log.info("================================   ==========================================   ========   =====   ==============================");
-		log.info("================================   =================       ==================   =======   ======   ===============================");
-		log.info("========================	         ==============             ===============   ======  ========   ==============================");
-		log.info("=====================   ========   ============                 =============   ====   =========   =================================");
-		log.info("====================    ========   ==============             ===============   ===   ==========   ===================================");
-		log.info("====================    ========   =================       ==================   ==   ===========   ==================================");
-		log.info("======================   =======   ==========================================   =   ============   ==============================");
-		log.info("==========================      =========================================================================================================");
-		log.info("====================================================================================================================================");
-		log.info("====================================================================================================================================");
+		log.info(
+				"====================================================================================================================================");
+		log.info(
+				"====================================================================================================================================");
+		log.info(
+				"====================================================================================================================================");
+		log.info(
+				"================================   ==========================================   =============      ==============================");
+		log.info(
+				"================================   ==========================================   ===========    =   ================================");
+		log.info(
+				"================================   ==========================================   ===========   ==   =================================");
+		log.info(
+				"================================   ==========================================   ==========   ===   ==================================");
+		log.info(
+				"================================   ==========================================   =========   ====   ==============================");
+		log.info(
+				"================================   ==========================================   ========   =====   ==============================");
+		log.info(
+				"================================   =================       ==================   =======   ======   ===============================");
+		log.info(
+				"========================	         ==============             ===============   ======  ========   ==============================");
+		log.info(
+				"=====================   ========   ============                 =============   ====   =========   =================================");
+		log.info(
+				"====================    ========   ==============             ===============   ===   ==========   ===================================");
+		log.info(
+				"====================    ========   =================       ==================   ==   ===========   ==================================");
+		log.info(
+				"======================   =======   ==========================================   =   ============   ==============================");
+		log.info(
+				"==========================      =========================================================================================================");
+		log.info(
+				"====================================================================================================================================");
+		log.info(
+				"====================================================================================================================================");
 
-
-	
 	}
-	
-	
-	private void partialPull() throws DataBaseException, EmptyResultSetException {  log.info("start fetching ContractorAccountDetail Data ......");
- 			List	 result = new ArrayList<>();// baseService.findAllBeans(IncomeDetail.class, shopEntityManager);
- 			log.info("start fetching IncomeDetail Data ......");
- 			result = baseService.findAllBeans(IncomeDetail.class, shopEntityManager);
- 			log.info("IncomeDetail Data has be en fetched succeffully  :)");
 
- 			result.stream().forEach(e ->
+	private void partialPull() throws DataBaseException, EmptyResultSetException {
+		List<Object> result = null;
 
- 			incomeDetailRepo.save((IncomeDetail2020) new IncomeDetail2020().map(e)));
- 			log.info("IncomeDetail Data has be en saved succeffully  :)");
- 			// ============================================================================================================================================
- 			log.info("start fetching OutcomeDetail Data ......");
- 			result = baseService.findAllBeans(OutcomeDetail.class, shopEntityManager);
- 			log.info("OutcomeDetail Data has be en fetched succeffully  :)");
+		// ============================================================================================================================================
+		log.info("start fetching LoanPaying Data ......");
+		result = baseService.findAllBeans(LoanPaying.class, shopEntityManager);
+		log.info("LoanPaying Data has be en fetched succeffully  :)");
 
- 			result.stream().forEach(e ->
- 			outcomeDetailRepo.save((OutcomeDetail2020) new OutcomeDetail2020().map(e)));
- 			log.info("OutcomeDetail Data has be en saved succeffully  :)");
- 			//===============================================================================================================================================
-			 
-	
- 			log.info("start fetching LoanPaying Data ......");
- 			result = baseService.findAllBeans(LoanPaying.class, shopEntityManager);
- 			log.info("LoanPaying Data has be en fetched succeffully  :)");
+		result.stream().forEach(e -> {
+			LoanPaying loanPaying = (LoanPaying) e;
+			if (loanPaying.getLoanAccount().getType().equals("IN_LOAN")) {
+ 				payDebitRepo.save((PayDebit)new PayDebit().mapLoanPaying(loanPaying));
+			} else if (loanPaying.getLoanAccount().getType().equals("OUT_LOAN")) {
+ 				payCreditRepo.save((PayCredit) new PayCredit().mapLoanPaying(loanPaying));
+			}
 
- 			result.stream().forEach(e ->
- 			{
- 				  LoanPaying loanPaying=(LoanPaying)e;
- 			  if(loanPaying.getLoanAccount().getType().equals("IN_LOAN")) {
- 				  ShopLoanTransaction loanTransaction=new PayCredit().mapLoanPaying(loanPaying);
- 				  payCreditRepo.save((PayCredit)loanTransaction);
- 			  }
- 			  else if (loanPaying.getLoanAccount().getType().equals("OUT_LOAN")) {
- 				  ShopLoanTransaction loanTransaction=new PayDebit().mapLoanPaying(loanPaying);
- 				  payDebitRepo.save((PayDebit)loanTransaction);
- 			  }  
- 			  
- 			  
- 			  }
- 			);
- 			log.info("LoanPaying Data has be en saved succeffully  :)");
- 			// ============================================================================================================================================
- 			log.info("start fetching IncLoan Data ......");
- 			result = baseService.findAllBeans(IncLoan.class, shopEntityManager);
- 			log.info("IncLoan Data has be en fetched succeffully  :)");
+		});
+		log.info("LoanPaying Data has be en saved succeffully  :)");
+		// ============================================================================================================================================
+		log.info("start fetching IncLoan Data ......");
+		result = baseService.findAllBeans(IncLoan.class, shopEntityManager);
+		log.info("IncLoan Data has be en fetched succeffully  :)");
 
- 			result.stream().forEach(e ->
- 			{
- 				  IncLoan incloan=(IncLoan)e;
- 		 		  if(incloan.getLoanAccount().getType().equals("IN_LOAN")) {
- 					  ShopLoanTransaction loanTransaction=new LoanDebit().mapIncLoan(incloan);
- 		 			  loanDebitRepo.save((LoanDebit)loanTransaction);
- 				  }
- 				  else if (incloan.getLoanAccount().getType().equals("OUT_LOAN")) {
- 		 			  ShopLoanTransaction loanTransaction=new LoanCredit().mapIncLoan(incloan);
- 					  loanCreditRepo.save((LoanCredit)loanTransaction);
- 		 		  }  
- 				  
- 				  
- 				  });
- 			log.info("IncLoan Data has be en saved succeffully  :)");
-	
+		result.stream().forEach(e -> {
+			IncLoan incloan = (IncLoan) e;
+			if (incloan.getLoanAccount().getType().equals("IN_LOAN")) {
+				ShopLoanTransaction loanTransaction = new LoanDebit().mapIncLoan(incloan);
+				loanDebitRepo.save((LoanDebit) loanTransaction);
+			} else if (incloan.getLoanAccount().getType().equals("OUT_LOAN")) {
+				ShopLoanTransaction loanTransaction = new LoanCredit().mapIncLoan(incloan);
+				loanCreditRepo.save((LoanCredit) loanTransaction);
+			}
+
+		});
+		log.info("IncLoan Data has be en saved succeffully  :)");
 	}
 }

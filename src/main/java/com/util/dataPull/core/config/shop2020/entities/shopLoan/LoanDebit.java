@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.util.dataPull.core.config.shop2020.*;
 import com.util.dataPull.core.config.shop2020.entities.expanses.IncomeDetail2020;
 
 import lombok.Getter;
@@ -19,7 +18,8 @@ import lombok.Setter;
 public class LoanDebit extends ShopLoanTransaction {
 	
 	
-	
+	//installments of loans shop has received   
+
 	
 	
 	@OneToOne

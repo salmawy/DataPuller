@@ -21,6 +21,10 @@ import lombok.Setter;
 @Getter
 public class IncomeDetail2020 extends SafeTransaction implements MappingImpl {
 
+
+	@Column(name = "INCOME_TYPE_ID")
+	private Integer incomeTypeId;
+	
 	@Column(name = "INSTALLMENT_ID")
 	private Integer installmentId;
 
@@ -53,7 +57,7 @@ public class IncomeDetail2020 extends SafeTransaction implements MappingImpl {
 		this.setNotes(e.getNotes());
 		this.setCreatorName(e.getResipeintName());
 		this.setSellerId(e.getSellerId());
-		this.setTypeId(getTypeId(e.getTypeName()));
+		this.setIncomeTypeId(getTypeId(e.getTypeName()));
 		this.setTransactionDate(e.getIncome().getIncomeDate());
 		try {
 			this.setTransactionDay(sdf.parse(sdf.format(e.getIncome().getIncomeDate())));
@@ -71,8 +75,8 @@ public class IncomeDetail2020 extends SafeTransaction implements MappingImpl {
 	 * TYPE='IN_PAY_LOAN';
 	 */
 
-	private int getTypeId(String typeName) {
-		int typeId = 0;
+	private Integer getTypeId(String typeName) {
+		Integer typeId = null;
 
 		if (typeName.equalsIgnoreCase("CASH"))
 			return 1;

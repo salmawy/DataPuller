@@ -17,6 +17,9 @@ import lombok.Setter;
 @DiscriminatorValue("LOAN_CREDIT")
 public class LoanCredit extends ShopLoanTransaction {
 	
+	//installments of loans shop has paid  
+
+	
 	@OneToOne
 	@JoinColumn(name = "OUTCOME_DETAIL_ID",insertable = false,updatable = false,nullable = true)
 	private OutcomeDetail2020 outcomeDetail;

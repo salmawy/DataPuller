@@ -17,7 +17,8 @@ import lombok.Setter;
 @Getter
 public class PayCredit extends ShopLoanTransaction {
 	
-	
+	//installments of loans shop has received  
+
 	@OneToOne
 	@JoinColumn(name = "INCOME_DETAIL_ID",insertable = false,updatable = false,nullable = true)
 	private IncomeDetail2020 incomeDetail;

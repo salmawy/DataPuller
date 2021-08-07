@@ -47,9 +47,8 @@ public class SafeTransaction extends BaseBean  {
 	@Column(name = "NOTES")
 	private String notes;
 
-	@Column(name = "TYPE_ID")
-	private int typeId;
-
+	
+	
 	@Column(name = "ORDER_ID")
 	private Integer orderId;
 
