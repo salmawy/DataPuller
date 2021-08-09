@@ -1,6 +1,5 @@
 package com.util.dataPull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,7 +29,6 @@ import com.util.dataPull.core.config.shop.entities.SellerOrder;
 import com.util.dataPull.core.config.shop.entities.SellerOrderWeight;
 import com.util.dataPull.core.config.shop2020.entities.contractors.Contractor2020;
 import com.util.dataPull.core.config.shop2020.entities.contractors.ContractorTransaction;
-import com.util.dataPull.core.config.shop2020.entities.contractors.ContractorType;
 import com.util.dataPull.core.config.shop2020.entities.customers.Customer2020;
 import com.util.dataPull.core.config.shop2020.entities.customers.CustomerOrder2020;
 import com.util.dataPull.core.config.shop2020.entities.customers.PurchasedCustomerInst2020;
