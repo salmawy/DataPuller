@@ -37,12 +37,18 @@ public class ContractorTransaction extends BaseBean implements MappingImpl{
 	@Column(name = "PAID")
 	private int paid;
 	
+	
+ 
+	
+	
 	@Column(name = "SETTLEDMENT_DATE")
 	private Date settllmentDate;
  
 	@Column(name = "SEASON_ID")
 	private int seasonId;
-
+	
+	
+	
  
 	@Column(name = "CONTRACTOR_ID")
 	private  Integer contractorId;
@@ -52,7 +58,7 @@ public class ContractorTransaction extends BaseBean implements MappingImpl{
 	public Object map(Object o) {
 		ContractorAccountDetail e=(ContractorAccountDetail)o;
 		this.setId(e.getId());
-		
+	
 		this.setContractorId(e.getContractorAccount().getContractorId());
 		this.setTransactionDate(e.getDetailDate());
 		this.setPaid(e.getPaid());

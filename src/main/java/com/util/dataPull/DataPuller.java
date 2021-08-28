@@ -379,37 +379,20 @@ public class DataPuller implements CommandLineRunner {
 	private void partialPull() throws DataBaseException, EmptyResultSetException {
 		List<Object> result = null;
 
-		// ============================================================================================================================================
-		log.info("start fetching LoanPaying Data ......");
-		result = baseService.findAllBeans(LoanPaying.class, shopEntityManager);
-		log.info("LoanPaying Data has be en fetched succeffully  :)");
-
+		log.info("start fetching ContractorAccountDetail Data ......");
+		result = baseService.findAllBeans(ContractorAccountDetail.class, shopEntityManager);
+		log.info("ContractorAccountDetail Data has be en fetched succeffully  :)");
 		result.stream().forEach(e -> {
-			LoanPaying loanPaying = (LoanPaying) e;
-			if (loanPaying.getLoanAccount().getType().equals("IN_LOAN")) {
- 				payDebitRepo.save((PayDebit)new PayDebit().mapLoanPaying(loanPaying));
-			} else if (loanPaying.getLoanAccount().getType().equals("OUT_LOAN")) {
- 				payCreditRepo.save((PayCredit) new PayCredit().mapLoanPaying(loanPaying));
+
+			try { // log.info("ContractorAccountDetail ID =>>>>>>" + ((ContractorAccountDetail)
+					// e).getId());
+				if (((ContractorAccountDetail) e).getContractorAccount().getContractorId() != 101)
+					contractoTransactionRepo.save((ContractorTransaction) new ContractorTransaction().map(e));
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 
 		});
-		log.info("LoanPaying Data has be en saved succeffully  :)");
-		// ============================================================================================================================================
-		log.info("start fetching IncLoan Data ......");
-		result = baseService.findAllBeans(IncLoan.class, shopEntityManager);
-		log.info("IncLoan Data has be en fetched succeffully  :)");
-
-		result.stream().forEach(e -> {
-			IncLoan incloan = (IncLoan) e;
-			if (incloan.getLoanAccount().getType().equals("IN_LOAN")) {
-				ShopLoanTransaction loanTransaction = new LoanDebit().mapIncLoan(incloan);
-				loanDebitRepo.save((LoanDebit) loanTransaction);
-			} else if (incloan.getLoanAccount().getType().equals("OUT_LOAN")) {
-				ShopLoanTransaction loanTransaction = new LoanCredit().mapIncLoan(incloan);
-				loanCreditRepo.save((LoanCredit) loanTransaction);
-			}
-
-		});
-		log.info("IncLoan Data has be en saved succeffully  :)");
+		log.info("ContractorAccountDetail Data has be en saved succeffully  :)");
 	}
 }
