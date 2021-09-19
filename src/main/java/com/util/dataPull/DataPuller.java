@@ -151,8 +151,8 @@ public class DataPuller implements CommandLineRunner {
 	@Transactional
 	public void run(String... args) throws Exception {
 
-		//fullPull();
-		 partialPull();
+		fullPull();
+		// partialPull();
 	}
 
 	private void fullPull() throws DataBaseException, EmptyResultSetException {
