@@ -1,4 +1,4 @@
- package com.util.dataPull.core.config.shop2020.entities.masterData;
+package com.util.dataPull.core.config.shop2020.entities.masterData;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,39 +14,37 @@ import com.util.dataPull.core.mapping.MappingImpl;
 
 import java.util.Date;
 
- @Table(name = "SEASONS")
- @Entity(name = "Season")
- @Setter
- @Getter
- public class Season2020 extends BaseBean implements MappingImpl{
+@Table(name = "SEASONS")
+@Entity(name = "Season")
+@Setter
+@Getter
+public class Season2020 extends BaseBean implements MappingImpl {
 
-	 
-	 
-	 
-		@Id
-		@Column(name ="ID" )
-		private int id ;
-		
-		
-     @Column(name = "START_DATE")
-     private Date startDate;
+	@Id
+	@Column(name = "ID")
+	private int id;
 
-     @Column(name = "END_DATE")
-     private Date endDate;
+	@Column(name = "START_DATE")
+	private Date startDate;
 
-     @Column(name = "CURRENT_SEASON")
-     private int currentSeason;
+	@Column(name = "END_DATE")
+	private Date endDate;
+
+	@Column(name = "CURRENT_SEASON")
+	private int currentSeason;
+
+	@Column(name = "INTIAL_SAFE_BALANCE" )
+	private double initaBalance=0;
 
 	@Override
 	public Object map(Object o) {
 
-Season s=(Season)o;
+		Season s = (Season) o;
 		this.setId(s.getId());
-		this.startDate=s.getStartDate();
-		this.endDate=s.getEndDate();
-		this.currentSeason=s.getCurrentSeason();
+		this.startDate = s.getStartDate();
+		this.endDate = s.getEndDate();
+		this.currentSeason = s.getCurrentSeason();
 		return this;
 	}
 
-
- }
+}
